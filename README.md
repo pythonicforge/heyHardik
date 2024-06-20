@@ -1,4 +1,4 @@
-# _heyHardik_
+# heyHardik
 
 ![banner](static/images/banner.png)
 
