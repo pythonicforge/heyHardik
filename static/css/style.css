@@ -359,7 +359,7 @@ html, body{
     }
 }
 
-.subtitle, .error-popup, .assistant-subtitle {
+.subtitle, .error-popup, .assistant-subtitle, .warning-popup {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -371,6 +371,7 @@ html, body{
     opacity: 0;
     transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out, top 0.5s ease-in-out;
     text-align: center;
+    font-family: "Poppins";
 }
 
 .subtitle {
@@ -393,7 +394,18 @@ html, body{
     background-color: rgba(255, 0, 0, 0.8);
 }
 
+.warning-popup{
+    top: -50px;
+    background-color: rgba(255, 255, 0, 0.8);
+    color:rgba(0, 0, 0, 0.7);
+}
+
 .error-popup.visible {
+    opacity: 1;
+    top: 20px;
+}
+
+.warning-popup.visible{
     opacity: 1;
     top: 20px;
 }
@@ -426,7 +438,7 @@ html, body{
     .nav-link a{
         font-size: 40px;
     }
-    .subtitle, .error-popup, .assistant-subtitle {
+    .subtitle, .error-popup, .assistant-subtitle, .warning-popup {
         left: 10px;
         transform: none;
         right: 10px;
@@ -436,6 +448,10 @@ html, body{
 
     .subtitle.visible {
         bottom: 65px;
+    }
+
+    .warning-popup.visible{
+        top: 65px;
     }
 
     .error-popup.visible {

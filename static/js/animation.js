@@ -93,6 +93,25 @@ function showError(errorMessage) {
     }, 3000);
 }
 
+function showWarning(warningMessage, duration = 3000) {
+    const warningContainer = document.createElement('div');
+    warningContainer.classList.add('warning-popup');
+    warningContainer.textContent = warningMessage;
+
+    document.body.appendChild(warningContainer);
+
+    setTimeout(() => {
+        warningContainer.classList.add('visible');
+    }, 100); 
+
+    setTimeout(() => {
+        warningContainer.classList.remove('visible');
+        setTimeout(() => {
+            document.body.removeChild(warningContainer);
+        }, 500); 
+    }, duration);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     initializeSiriWave();
 
@@ -101,6 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     setTimeout(() => {
-        speakText("Hello, my name is Siri. How can I help you today?");
+        if(window.innerWidth < 475){
+            showWarning("⚠️ Sara is not yet optimized for mobile devices. Please use a desktop or laptop to use Sara.", 3000);
+        }
+        // speakText("Hello, my name is Sara. How can I help you today?");
     }, 9000);
 });
