@@ -69,6 +69,11 @@
                 </div>
             </div>
         </div>
+
+        <div class="main-container">
+            <div id="animation-container"></div>
+        </div>
+
         <div class="footer">
             <button id="instructions">Toggle 'V' key to speak or Click here to speak</button>
             <div id="listening-indicator" class="hidden">
@@ -86,6 +91,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/animation.js') }}"></script>
     <script src="{{ url_for('static', filename='js/microphone.js') }}"></script>
 </body>
 </html>
