@@ -95,7 +95,7 @@ window.onload = function() {
 
     function showError(errorMessage) {
         const errorContainer = document.getElementById('error-container');
-        errorContainer.textContent = errorMessage;
+        errorContainer.textContent = `❌ ${errorMessage}`;
         errorContainer.classList.add('visible');
     
         setTimeout(() => {
