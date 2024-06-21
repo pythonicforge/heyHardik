@@ -127,7 +127,7 @@ html, body{
     justify-content: space-between;
     align-items: center;
     padding: 1.15em 3em;
-    border: 1px solid black;
+    border-bottom: 1px solid #6767676b;
 }
 
 .site-logo{
