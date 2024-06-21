@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>{% block title %}heyHardik{% endblock %}</title>
 </head>
+
 <body>
     <div class="loader">
         <h1 class="counter">0%</h1>
@@ -72,10 +74,9 @@
         </div>
 
         <div class="main-container">
-            Hey there
-            
+            <div id="animation-container"></div>
+            <button id="speak-button">Speak</button>
         </div>
-        
 
         <div class="footer">
             <button id="instructions">Toggle 'V' key to speak or Click here to speak</button>
@@ -90,7 +91,6 @@
         </div>
     </div>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
@@ -98,4 +98,5 @@
     <script src="{{ url_for('static', filename='js/animation.js') }}"></script>
     <script src="{{ url_for('static', filename='js/microphone.js') }}"></script>
 </body>
+
 </html>
