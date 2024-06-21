@@ -12,7 +12,7 @@
     <div class="loader">
         <h1 class="counter">0%</h1>
         <div class="site-teaser">
-            <span>Hello. नमस्ते. Hola. こんにちは. Bonjour. </span>
+            <span class=".site-teaser-text">Hello. नमस्ते. Hola. こんにちは. Bonjour. </span>
         </div>
         <div class="circles">
             <div class="circle circle-outer"></div>
@@ -23,10 +23,55 @@
     </div>
 
     <div class="container">
-        <h1>Hi!</h1>
+        <div class="navbar">
+            <div class="site-logo">Hardik Jaiswal</div>
+            <div class="menu-toggle">
+                <div id="menu-toggle-btn">
+                    <span class="span-text"></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav-container">
+            <div class="nav">
+                <div class="col flex">
+                    <div class="nav-logo">c:/</div>
+                </div>
+                <div class="col">
+                    <div class="nav-link">
+                        <a href="https://github.com/pythonicforge" target="_blank">GitHub</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-link">
+                        <a href="https://linkedin.com/in/pseudopythonic" target="_blank">LinkedIn</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-link">
+                        <a href="https://twitter.com/hardeadik" target="_blank">Twitter</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-link">
+                        <a href="https://instagram.com/hardeadik" target="_blank">Instagram</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                    <div class="nav-link">
+                        <a href="#" target="_blank">Resume</a>
+                        <div class="nav-item-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-footer">
+                <div class="links">
+                    <a href="#">Cppyright (C) 2024 Hardik Jaiswal</a>
+                </div>
+                <div class="contact">
+                    <a href="#">pythonicforge@gmail.com</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
 </body>
 </html>
