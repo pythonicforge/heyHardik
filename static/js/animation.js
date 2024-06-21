@@ -123,6 +123,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if(window.innerWidth < 475){
             showWarning("⚠️ Sara is not yet optimized for mobile devices. Please use a desktop or laptop to use Sara.", 3000);
         }
-        // speakText("Hello, my name is Sara. How can I help you today?");
+        speakText("Hello, my name is Sara. How can I help you today?");
     }, 9000);
 });
