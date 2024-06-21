@@ -66,11 +66,9 @@ window.onload = function() {
             if (isRecognizing) {
                 recognition.stop();
                 isRecognizing = false;
-                // hideSiriAnimation()
             } else {
                 recognition.start();
                 isRecognizing = true;
-                // showSiriAnimation()
             }
         }
     });
@@ -79,11 +77,9 @@ window.onload = function() {
         if (isRecognizing) {
             recognition.stop();
             isRecognizing = false;
-            // hideSiriAnimation()
         } else {
             recognition.start();
             isRecognizing = true;
-            // showSiriAnimation()
         }
     })
 
@@ -94,7 +90,7 @@ window.onload = function() {
     
         setTimeout(() => {
             subtitleContainer.classList.remove('visible');
-        }, 5000);
+        }, 3000);
     }
 
     function showError(errorMessage) {
@@ -104,17 +100,6 @@ window.onload = function() {
     
         setTimeout(() => {
             errorContainer.classList.remove('visible');
-        }, 5000);
+        }, 3000);
     }
-
-    // function showSiriAnimation() {
-    //     const siriAnimation = document.getElementById('siri-animation');
-    //     siriAnimation.classList.remove('hidden');
-    // }
-    
-    // function hideSiriAnimation() {
-    //     const siriAnimation = document.getElementById('siri-animation');
-    //     siriAnimation.classList.add('hidden');
-    // }
-    
 };

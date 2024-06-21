@@ -122,7 +122,7 @@ html, body{
 
 .navbar{
     position: fixed;
-    z-index: 10000;
+    z-index: 10;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -359,7 +359,7 @@ html, body{
     }
 }
 
-.subtitle, .error-popup {
+.subtitle, .error-popup, .assistant-subtitle {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -378,6 +378,11 @@ html, body{
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+.assistant-subtitle {
+    top: 0px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
 .subtitle.visible {
     opacity: 1;
     bottom: 65px;
@@ -391,6 +396,11 @@ html, body{
 .error-popup.visible {
     opacity: 1;
     top: 20px;
+}
+
+.assistant-subtitle.visible{
+    opacity: 1;
+    top: 35px;
 }
 
 @media(max-width: 900px){
@@ -416,7 +426,7 @@ html, body{
     .nav-link a{
         font-size: 40px;
     }
-    .subtitle, .error-popup {
+    .subtitle, .error-popup, .assistant-subtitle {
         left: 10px;
         transform: none;
         right: 10px;
@@ -425,11 +435,15 @@ html, body{
     }
 
     .subtitle.visible {
-        bottom: 70px;
+        bottom: 65px;
     }
 
     .error-popup.visible {
-        top: 10px;
+        top: 65px;
+    }
+
+    .assistant-subtitle.visible{
+        top: 29px;
     }
 }
 

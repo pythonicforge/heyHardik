@@ -23,37 +23,47 @@ function updateSiriWaveWidth() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    initializeSiriWave();
-
-    window.addEventListener('resize', function () {
-        location.reload()
-    });
-
-    window.addEventListener('load', function () {
-        updateSiriWaveWidth();
-    });
-});
-
 function speakText(text) {
-    const voices = speechSynthesis.getVoices();
-    const selectedVoice = voices.find(voice => voice.name === "Microsoft Emma Online (Natural) - English (United States)");
-    const fallbackVoice = voices.find(voice => voice.name === "Microsoft Mark - English (United States)")
-    var utterance = new SpeechSynthesisUtterance(text);
-    if (selectedVoice) {
-        utterance.voice = selectedVoice;
-        console.log(`Voice set to: ${selectedVoice.name} (${selectedVoice.lang})`);
-    } else {
-        utterance.voice = fallbackVoice
-        console.log(`Voice not found: ${selectedVoice}`);
+    try {
+        const voices = speechSynthesis.getVoices();
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        if (voices.length > 0) {
+            const selectedVoice = voices.find(voice => voice.name === "Microsoft Emma Online (Natural) - English (United States)");
+            const fallbackVoice = voices.find(voice => voice.name === "Microsoft Mark - English (United States)");
+
+            if (selectedVoice) {
+                utterance.voice = selectedVoice;
+                console.log(`Voice set to: ${selectedVoice.name} (${selectedVoice.lang})`);
+            } else {
+                utterance.voice = fallbackVoice;
+                console.log(`Voice not found: ${selectedVoice}`);
+            }
+
+            utterance.onstart = function (event) {
+                setSiriWaveAmplitude(1.5);
+                console.log("Speech started");
+                showSubtitle(text);
+            };
+
+            utterance.onend = function (event) {
+                setSiriWaveAmplitude(0.3);
+                console.log("Speech ended");
+                hideSubtitle();
+            };
+
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.log("No voices available yet. Waiting for voiceschanged event.");
+            speechSynthesis.onvoiceschanged = function () {
+                speechSynthesis.onvoiceschanged = null;
+                speakText(text);
+            };
+        }
+    } catch (error) {
+        showError("Program ran into an error! Please try again later");
+        console.log(error);
     }
-    utterance.onstart = function (event) {
-        setSiriWaveAmplitude(1.5);
-    };
-    utterance.onend = function (event) {
-        setSiriWaveAmplitude(0.3);
-    };
-    window.speechSynthesis.speak(utterance);
 }
 
 function setSiriWaveAmplitude(amplitude) {
@@ -62,31 +72,35 @@ function setSiriWaveAmplitude(amplitude) {
     }
 }
 
-document.getElementById("speak-button").addEventListener("click", function () {
-    var textToSpeak = "Hello, hey there! ";
-    speakText(textToSpeak);
-});
-
-function updateSiriWaveAmplitude(audioContext) {
-    var analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256;
-    var bufferLength = analyser.frequencyBinCount;
-    var dataArray = new Uint8Array(bufferLength);
-
-    function update() {
-        analyser.getByteFrequencyData(dataArray);
-        var amplitude = dataArray.reduce((acc, val) => acc + val, 0) / bufferLength / 256;
-        setSiriWaveAmplitude(amplitude);
-        requestAnimationFrame(update);
-    }
-
-    navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(function (stream) {
-            var source = audioContext.createMediaStreamSource(stream);
-            source.connect(analyser);
-            update();
-        })
-        .catch(function (err) {
-            console.error('Error getting audio input: ', err);
-        });
+function showSubtitle(transcript) {
+    const subtitleContainer = document.getElementById('assistant-subtitle-container');
+    subtitleContainer.textContent = transcript;
+    subtitleContainer.classList.add('visible');
 }
+
+function hideSubtitle() {
+    const subtitleContainer = document.getElementById('assistant-subtitle-container');
+    subtitleContainer.classList.remove('visible');
+}
+
+function showError(errorMessage) {
+    const errorContainer = document.getElementById('error-container');
+    errorContainer.textContent = errorMessage;
+    errorContainer.classList.add('visible');
+
+    setTimeout(() => {
+        errorContainer.classList.remove('visible');
+    }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    initializeSiriWave();
+
+    window.addEventListener('resize', function () {
+        location.reload();
+    });
+
+    setTimeout(() => {
+        speakText("Hello, my name is Siri. How can I help you today?");
+    }, 9000);
+});
