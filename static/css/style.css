@@ -247,9 +247,10 @@ html, body{
     position: absolute;
     width: 100%;
     bottom: 0;
-    padding: 2em 1em;
+    padding: 1.15em 1em;
     display: flex;
     justify-content: space-between;
+    border-top: 1px solid #6767676b;
 }
 
 .nav-footer a{
