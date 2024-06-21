@@ -14,7 +14,7 @@
 html, body{
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: #181818;
 }
 
@@ -114,7 +114,7 @@ html, body{
     left: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     background: #fff;
     font-family: "Poppins";
 }
