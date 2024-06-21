@@ -265,6 +265,119 @@ html, body{
     color: rgba(255, 255, 255, 0.7);
 }
 
+.footer {
+    position: fixed;
+    height: 60px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #6767676b;
+    color: #181818;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.footer>#instructions.hidden {
+    display: none;
+}
+
+#instructions{
+    font-family: Poppins;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+#listening-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#listening-indicator.hidden {
+    display: none;
+}
+
+.bar {
+    width: 5px;
+    border-radius: 5px;
+    height: 20px;
+    margin: 0 3px;
+    background-color: var(--accent-color);
+}
+
+.bar:nth-child(1) {
+    animation: bounce 0.7s 0.6s infinite;
+}
+
+.bar:nth-child(2) {
+    animation: bounce 0.7s 0.3s infinite;
+}
+
+.bar:nth-child(3) {
+    animation: bounce 0.7s infinite;
+}
+
+.bar:nth-child(4) {
+    animation: bounce 0.7s 0.3s infinite;
+}
+
+.bar:nth-child(5) {
+    animation: bounce 0.7s 0.6s infinite;
+}
+
+@keyframes bounce {
+    0% {
+        height: 20px;
+    }
+
+    50% {
+        height: 10px;
+    }
+
+    100% {
+        height: 20px;
+    }
+}
+
+.subtitle, .error-popup {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, bottom 0.5s ease-in-out, top 0.5s ease-in-out;
+    text-align: center;
+}
+
+.subtitle {
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.subtitle.visible {
+    opacity: 1;
+    bottom: 65px;
+}
+
+.error-popup {
+    top: -50px;
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+.error-popup.visible {
+    opacity: 1;
+    top: 20px;
+}
+
 @media(max-width: 900px){
     .nav{
         flex-direction: column-reverse;
@@ -287,11 +400,26 @@ html, body{
     .nav-link a{
         font-size: 40px;
     }
+    .subtitle, .error-popup {
+        left: 10px;
+        transform: none;
+        right: 10px;
+        white-space: normal;
+        padding: 10px;
+    }
+
+    .subtitle.visible {
+        bottom: 70px;
+    }
+
+    .error-popup.visible {
+        top: 10px;
+    }
 }
 
 @media(max-width: 450px){
     .navbar {
-        padding: 1.5em 2em;
+        padding: 0.95em 1.5em;
     }
 }
 

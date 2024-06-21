@@ -32,6 +32,7 @@
             </div>
         </div>
         <div class="nav-container">
+            <div id="error-container" class="error-popup"></div>
             <div class="nav">
                 <div class="col flex">
                     <div class="nav-logo">c:/</div>
@@ -68,10 +69,23 @@
                 </div>
             </div>
         </div>
+        <div class="footer">
+            <button id="instructions">Toggle 'V' key to speak or Click here to speak</button>
+            <div id="listening-indicator" class="hidden">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div id="subtitle-container" class="subtitle"></div>
+        </div>
     </div>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/microphone.js') }}"></script>
 </body>
 </html>
