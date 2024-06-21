@@ -1,10 +1,11 @@
+let siriWave;
+let recognition;
+let isRecognizing = false;
+let transcript;
+
 window.onload = function() {
     const listeningIndicator = document.getElementById('listening-indicator');
     const instructionIndicator = document.getElementById('instructions');
-    let recognition;
-    let transcript;
-    let error;
-    let isRecognizing = false;
 
     if ('webkitSpeechRecognition' in window) {
         recognition = new webkitSpeechRecognition();
@@ -36,15 +37,16 @@ window.onload = function() {
     recognition.onresult = function(event) {
         transcript = event.results[0][0].transcript;
         console.log('Transcript: ', transcript);
-        showSubtitle(transcript);
+        speakText(transcript);
     };
 
     recognition.onerror = function(event) {
         isRecognizing = false;
+        let error;
 
         switch(event.error) {
             case 'network':
-               error = 'Network error. Please check your internet connection and try again.';
+                error = 'Network error. Please check your internet connection and try again.';
                 break;
             case 'no-speech':
                 error = 'No speech detected. Please try again.';
@@ -63,17 +65,13 @@ window.onload = function() {
 
     document.addEventListener('keydown', function(event) {
         if ((event.key === 'v' || event.key === 'V')) {
-            if (isRecognizing) {
-                recognition.stop();
-                isRecognizing = false;
-            } else {
-                recognition.start();
-                isRecognizing = true;
-            }
+            toggleRecognition();
         }
     });
 
-    instructionIndicator.addEventListener('click', function(e) {
+    instructionIndicator.addEventListener('click', toggleRecognition);
+
+    function toggleRecognition() {
         if (isRecognizing) {
             recognition.stop();
             isRecognizing = false;
@@ -81,25 +79,117 @@ window.onload = function() {
             recognition.start();
             isRecognizing = true;
         }
-    })
-
-    function showSubtitle(transcript) {
-        const subtitleContainer = document.getElementById('subtitle-container');
-        subtitleContainer.textContent = transcript;
-        subtitleContainer.classList.add('visible');
-    
-        setTimeout(() => {
-            subtitleContainer.classList.remove('visible');
-        }, 3000);
     }
 
     function showError(errorMessage) {
         const errorContainer = document.getElementById('error-container');
         errorContainer.textContent = `❌ ${errorMessage}`;
         errorContainer.classList.add('visible');
-    
+
         setTimeout(() => {
             errorContainer.classList.remove('visible');
         }, 3000);
     }
+
+    initializeSiriWave();
+    window.addEventListener('resize', function() {
+        location.reload();
+    });
+
+    setTimeout(() => {
+        if(window.innerWidth < 475){
+            showWarning("⚠️ Sara is not yet optimized for mobile devices. Please use a desktop or laptop to use Sara.", 3000);
+        }
+        speakText("Hello, my name is Sara. How can I help you today?");
+    }, 9000);
 };
+
+function initializeSiriWave() {
+    const container = document.getElementById("animation-container");
+    const initialWidth = window.innerWidth;
+
+    siriWave = new SiriWave({
+        container: container,
+        width: initialWidth,
+        height: 100,
+        color: "#000",
+        speed: 0.06,
+        amplitude: 0.3,
+        frequency: 9
+    });
+    siriWave.start();
+}
+
+function speakText(text) {
+    try {
+        const voices = speechSynthesis.getVoices();
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        if (voices.length > 0) {
+            const selectedVoice = voices.find(voice => voice.name === "Microsoft Emma Online (Natural) - English (United States)");
+            const fallbackVoice = voices.find(voice => voice.name === "Microsoft Mark - English (United States)");
+
+            utterance.voice = selectedVoice || fallbackVoice;
+            console.log(`Voice set to: ${utterance.voice.name} (${utterance.voice.lang})`);
+
+            utterance.onstart = function() {
+                setSiriWaveAmplitude(1.5);
+                console.log("Speech started");
+                showSubtitle(text);
+            };
+
+            utterance.onend = function() {
+                setSiriWaveAmplitude(0.3);
+                console.log("Speech ended");
+                hideSubtitle();
+            };
+
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.log("No voices available yet. Waiting for voiceschanged event.");
+            speechSynthesis.onvoiceschanged = function() {
+                speechSynthesis.onvoiceschanged = null;
+                speakText(text);
+            };
+        }
+    } catch (error) {
+        showError("Program ran into an error! Please try again later");
+        console.log(error);
+    }
+}
+
+function setSiriWaveAmplitude(amplitude) {
+    if (siriWave) {
+        siriWave.setAmplitude(amplitude);
+    }
+}
+
+function showSubtitle(transcript) {
+    const subtitleContainer = document.getElementById('assistant-subtitle-container');
+    subtitleContainer.textContent = transcript;
+    subtitleContainer.classList.add('visible');
+}
+
+function hideSubtitle() {
+    const subtitleContainer = document.getElementById('assistant-subtitle-container');
+    subtitleContainer.classList.remove('visible');
+}
+
+function showWarning(warningMessage, duration = 3000) {
+    const warningContainer = document.createElement('div');
+    warningContainer.classList.add('warning-popup');
+    warningContainer.textContent = warningMessage;
+
+    document.body.appendChild(warningContainer);
+
+    setTimeout(() => {
+        warningContainer.classList.add('visible');
+    }, 100);
+
+    setTimeout(() => {
+        warningContainer.classList.remove('visible');
+        setTimeout(() => {
+            document.body.removeChild(warningContainer);
+        }, 500);
+    }, duration);
+}
