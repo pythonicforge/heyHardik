@@ -50,13 +50,13 @@ gsap.to(".circles", 1.5, {
 
 gsap.to(".block", 0.75, {
     display: "block",
-    height: "20vh",
+    height: "30vh",
     ease: "power4.inOut",
     delay: 4,
 });
 
 gsap.to(".block", 0.75, {
-    width: "80vw",
+    width: "70vw",
     ease: "power4.inOut",
     delay: 4.5,
 });

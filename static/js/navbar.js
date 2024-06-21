@@ -1,5 +1,3 @@
-// script.js
-
 const tl = gsap.timeline({ paused: true, reversed: true });
 
 const animateOpenNav = () => {
@@ -11,7 +9,7 @@ const animateOpenNav = () => {
     });
 
     tl.to('.site-logo', {
-        color: "#fff",
+        color: "#ffffffb3",
         duration: 0.5,
         ease: "power2.inOut",
     }, "-=0.4");
