@@ -143,8 +143,18 @@ window.onload = function() {
             if (voices.length > 0) {
                 const selectedVoice = voices.find(voice => voice.name === "Microsoft Emma Online (Natural) - English (United States)");
                 const fallbackVoice = voices.find(voice => voice.name === "Microsoft Mark - English (United States)");
+                const defaultVoice = voices[0]
 
-                utterance.voice = selectedVoice || fallbackVoice;
+                if(selectedVoice){
+                    utterance.voice = selectedVoice;
+                }
+                else if(fallbackVoice){
+                    utterance.voice = fallbackVoice;
+                }
+                else{
+                    utterance.voice = defaultVoice;
+                }
+
                 console.log(`Voice set to: ${assistantName} (${utterance.voice.lang})`);
 
                 utterance.onstart = function() {
@@ -206,5 +216,15 @@ window.onload = function() {
                 document.body.removeChild(warningContainer);
             }, 500);
         }, duration);
+    }
+
+    function showError(errorMessage) {
+        const errorContainer = document.getElementById('error-container');
+        errorContainer.textContent = errorMessage;
+        errorContainer.classList.add('visible');
+    
+        setTimeout(() => {
+            errorContainer.classList.remove('visible');
+        }, 5000);
     }
 };
