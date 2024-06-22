@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <!-- Preloader -->
     <div class="loader">
         <h1 class="counter">0%</h1>
         <div class="site-teaser">
@@ -25,8 +26,12 @@
     </div>
 
     <div class="container">
+        <!-- Error container -->
         <div id="error-container" class="error-popup"></div>
+        <!-- Warning container -->
         <div id="warning-container" class="warning-popup"></div>
+
+        <!-- Navbar -->
         <div class="navbar">
             <div class="site-logo">Hardik Jaiswal</div>
             <div class="menu-toggle">
@@ -36,6 +41,7 @@
             </div>
         </div>
 
+        <!-- Navbar full screen toggle -->
         <div class="nav-container">
             <div class="nav">
                 <div class="col flex">
@@ -74,11 +80,14 @@
             </div>
         </div>
 
+        <!-- Main container -->
         <div class="main-container">
             <div id="animation-container"></div>
             <div id="assistant-subtitle-container" class="assistant-subtitle"></div>
+            <button id="launch-assistant">Launch Assistant</button>
         </div>
 
+        <!-- Footer container -->
         <div class="footer">
             <button id="instructions">Toggle 'V' key to speak or Click here to speak</button>
             <div id="listening-indicator" class="hidden">
@@ -88,16 +97,18 @@
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
+
+            <!-- Subtitle container -->
             <div id="subtitle-container" class="subtitle"></div>
         </div>
     </div>
 
+    <!-- Script files -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
     <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
-    <script src="{{ url_for('static', filename='js/animation.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/microphone.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/echo.js') }}"></script>
 </body>
 
 </html>

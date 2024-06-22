@@ -4,6 +4,7 @@
 
 :root{
     --accent-color: #505050;
+    --light-black: #181818;
 }
 
 *{
@@ -16,7 +17,7 @@ html, body{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #181818;
+    background-color: var(--light-black);
 }
 
 .loader{
@@ -90,8 +91,8 @@ html, body{
     position: absolute;
     left: 50%;
     transform: translateX(-50%) scale(0);
-    width: 162.5px;
-    height: 162.5px;
+    width: 175px;
+    height: 175px;
     background: none;
     border: 1px solid var(--accent-color);
     border-radius: 100%;
@@ -280,6 +281,30 @@ html, body{
     align-items: center;
 }
 
+#launch-assistant{
+    padding: 10px 15px;
+    border: 1px solid var(--light-black);
+    font-family: "Poppins";
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: var(--light-black);
+    cursor: pointer;
+    border-radius: 7px;
+    opacity: 1;
+    transition: opacity 0.3s linear; /* Smooth transition for opacity */
+}
+
+#launch-assistant.hidden{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#launch-assistant:hover{
+    background-color: var(--light-black);
+    color: white;
+}
+
 .footer {
     position: fixed;
     height: 60px;
@@ -287,7 +312,7 @@ html, body{
     bottom: 0;
     width: 100%;
     border-top: 1px solid #6767676b;
-    color: #181818;
+    color: var(--light-black);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -497,8 +522,8 @@ html, body{
     }
 
     .circle-inner-rotator {
-        width: 90px;
-        height: 90px;
+        width: 100px;
+        height: 100px;
     }
 
     .block {

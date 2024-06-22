@@ -30,8 +30,8 @@ gsap.from(".circles", 2, {
 });
 
 gsap.to(".circle-inner", 1, {
-    width: "75px",
-    height: "75px",
+    width: "50px",
+    height: "50px",
     ease: "power4.inOut",
     delay: 2,
 })
