@@ -12,14 +12,14 @@ window.onload = function() {
 
     setTimeout(() => {
         if(window.innerWidth < 475){
-            showWarning(`⚠️ This webiste is not yet optimized for mobile devices yet. Please use a desktop or laptop to for better experience`, 5000);
+            showWarning(`⚠️ This website is not yet optimized for mobile devices yet. Please use a desktop or laptop for better experience`, 5000);
         }
     }, 8000);
 
     launchButton.addEventListener('click', function() {
         if (!isAssistantLaunched) {
             initializeSiriWave();
-            speakText("Hello, my name is ECHO. How can I help you today?");
+            speakText("Hello, my name is ECHO ! I am Hardik's personal assistant. Feel free to ask any questions aboutt him.");
             isAssistantLaunched = true;
             launchButton.classList.add("hidden");
             setTimeout(() => {
