@@ -1,4 +1,4 @@
-# heyHardik (Under development ⚒️)
+# _heyHardik (Under development ⚒️)_
 
 ![banner](static/images/banner.png)
 
