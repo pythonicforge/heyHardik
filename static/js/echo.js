@@ -19,7 +19,7 @@ window.onload = function() {
     launchButton.addEventListener('click', function() {
         if (!isAssistantLaunched) {
             initializeSiriWave();
-            speakText("Hello, my name is ECHO ! I am Hardik's personal assistant. Feel free to ask any questions aboutt him.");
+            speakText("Hello, my name is ECHO ! I am Hardik's personal assistant. Feel free to ask any questions about him.");
             isAssistantLaunched = true;
             launchButton.classList.add("hidden");
             setTimeout(() => {
