@@ -71,7 +71,7 @@ gsap.fromTo(".container", {
     duration: 2,
     left: "50%",
     scale: 0.5,
-    transform: "translateX(-50%",
+    transform: "translateX(-50%)",
     ease: "power4.inOut",
     delay: 4,
 })
